@@ -3,12 +3,15 @@ package main
 import (
 	"encoding/csv"
 	"errors"
+	"fmt"
 	"io"
 	"log"
 	"os"
 
 	"github.com/biter777/countries"
 )
+
+var response string
 
 func getEmoji(countryName string) (string, error) {
 	var emoji string
@@ -44,6 +47,18 @@ func getCountryNames(name string) (string, string) {
 		log.Panic(errors.New("Incorrect country name"))
 	}
 	return country[1], country[4]
+}
+
+func responseBuilder(country string) error {
+	ruCountryName, enCountryName := getCountryNames(country)
+	emoji, err := getEmoji(enCountryName)
+	if err != nil {
+		return err
+	}
+	ruWikiUrl := "ru.wikipedia.org/wiki/" + ruCountryName
+	enWikiUrl := "en.wikipedia.org/wiki/" + enCountryName
+	response = fmt.Sprintf("%v\n\n%v\n\n%v\n", emoji, ruWikiUrl, enWikiUrl)
+	return nil
 }
 
 func main() {
