@@ -33,8 +33,7 @@ func getCountryNames(name string) (string, string) {
 		record, err := reader.Read()
 		if err != nil {
 			if err == io.EOF {
-				log.Println("_______EOF_______")
-				break
+				log.Panic(errors.New("Incorrect country name"))
 			}
 			log.Panic(err)
 			break
