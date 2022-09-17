@@ -62,4 +62,5 @@ func responseBuilder(country string) error {
 }
 
 func main() {
+	bot()
 }
