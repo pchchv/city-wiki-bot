@@ -31,10 +31,7 @@ func getCountryNames(name string) (string, string) {
 	reader.Comma = ';'
 	for {
 		record, err := reader.Read()
-		if err != nil {
-			if err == io.EOF {
-				log.Panic(errors.New("Incorrect country name"))
-			}
+		if err != nil && err != io.EOF {
 			log.Panic(err)
 			break
 		}
