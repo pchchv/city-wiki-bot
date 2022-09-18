@@ -13,7 +13,8 @@ func bot() {
 	if err != nil {
 		log.Panic(err)
 	}
-	log.Printf("Authorized on account %s", bot.Self.UserName)
+	log.Printf("Authorized on account %s\n", bot.Self.UserName)
+	log.Println("Bot is running")
 	// Set the update time
 	u := tgbotapi.NewUpdate(0)
 	u.Timeout = 60
