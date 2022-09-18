@@ -28,12 +28,17 @@ func bot() {
 			switch update.Message.Text {
 			case "/start":
 				text := fmt.Sprintf(
-					"Hi %v!\nI'm a City Wiki Bot.\nSend me the name of the country and I'll reply with an emoji with its flag and a link to the Wikipedia page.",
+					"Привет %v!\nЯ City Wiki Bot.\nОтправь мне название страны, а я отвечу эмодзи с ее флагом и ссылкой на страницу страны в Википедии",
 					update.Message.From,
 				)
 				msg := tgbotapi.NewMessage(update.Message.Chat.ID, text)
 				bot.Send(msg)
 			}
+		} else {
+			//Отправлем сообщение
+            msg := tgbotapi.NewMessage(update.Message.Chat.ID, "Use the words for search.")
+            bot.Send(msg)
+        }
 		}
 	}
 }
