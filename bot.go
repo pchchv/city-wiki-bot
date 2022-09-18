@@ -33,9 +33,17 @@ func bot() {
 				)
 				msg := tgbotapi.NewMessage(update.Message.Chat.ID, text)
 				bot.Send(msg)
+			default:
+				if responseBuilder(update.Message.Text) != nil {
+					msg := tgbotapi.NewMessage(update.Message.Chat.ID, "Ошибка.\nОтправь название страны")
+					bot.Send(msg)
+				} else {
+					msg := tgbotapi.NewMessage(update.Message.Chat.ID, response)
+					bot.Send(msg)
+				}
 			}
 		} else {
-			msg := tgbotapi.NewMessage(update.Message.Chat.ID, "Отправь название страны")
+			msg := tgbotapi.NewMessage(update.Message.Chat.ID, "Ошибка.\nОтправь название страны")
 			bot.Send(msg)
 		}
 	}
