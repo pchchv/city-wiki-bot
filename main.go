@@ -22,7 +22,7 @@ func init() {
 }
 
 func getEnvValue(v string) string {
-	// Getting a value. Outputs a panic if the value is missing.
+	// Getting a value. Outputs a panic if the value is missing
 	value, exist := os.LookupEnv(v)
 	if !exist {
 		log.Panicf("Value %v does not exist", v)
@@ -31,6 +31,7 @@ func getEnvValue(v string) string {
 }
 
 func getEmoji(countryName string) (string, error) {
+	// Get an emoji by country name in English
 	var emoji string
 	c := countries.ByName(countryName)
 	if c.Info().Name == "Unknown" {
@@ -41,6 +42,7 @@ func getEmoji(countryName string) (string, error) {
 }
 
 func getCountryNames(name string) (string, string) {
+	// Get the name of the country in English and Russian
 	var country []string
 	file, err := os.Open("_countries.csv")
 	if err != nil {
@@ -67,6 +69,7 @@ func getCountryNames(name string) (string, string) {
 }
 
 func responseBuilder(country string) error {
+	// Collect all data for the answer in one string
 	ruCountryName, enCountryName := getCountryNames(country)
 	emoji, err := getEmoji(enCountryName)
 	if err != nil {
