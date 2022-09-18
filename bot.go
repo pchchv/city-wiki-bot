@@ -35,10 +35,8 @@ func bot() {
 				bot.Send(msg)
 			}
 		} else {
-			//Отправлем сообщение
-            msg := tgbotapi.NewMessage(update.Message.Chat.ID, "Use the words for search.")
-            bot.Send(msg)
-        }
+			msg := tgbotapi.NewMessage(update.Message.Chat.ID, "Отправь название страны")
+			bot.Send(msg)
 		}
 	}
 }
